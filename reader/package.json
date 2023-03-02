@@ -1,0 +1,22 @@
+{
+  "name": "fig-reader",
+  "version": "1.0.0",
+  "description": "Figma .fig reader",
+  "type": "module",
+  "main": "cli.js",
+  "bin": {
+    "fig-reader": "./cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "figma",
+    "fig"
+  ],
+  "author": "AzazelN28 <asakon28@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "kiwi-schema": "^0.4.7"
+  }
+}
