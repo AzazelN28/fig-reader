@@ -1,6 +1,29 @@
 # Figma .fig File Format
 
-Los archivos `.fig` de Figma están basados en
+## Archivo `.fig` raíz
+
+Los archivos `.fig` son zips comprimidos que poseen la siguiente estructura:
+
+- `canvas.fig`: Documento Figma.
+- `meta.json`: JSON con los metadatos.
+- `thumbnail.png`: Thumbnail del documento.
+- `images/`: Directorio con las imágenes del documento.
+
+Puedes descomprimir cualquier archivo `.fig` con:
+
+```sh
+unzip -d <Directorio> <Figma.fig>
+```
+
+Y una vez descomprimido, si tienes `fig-reader` instalado puedes usar:
+
+```sh
+fig-reader <Directorio>/canvas.fig
+```
+
+## Archivo `canvas.fig`
+
+Los archivos `canvas.fig` de Figma están basados en
 [Kiwi](https://github.com/evanw/kiwi) y ahora mismo poseen una estructura
 similar a esta:
 
@@ -13,10 +36,10 @@ similar a esta:
 | payloadSize   | uint32le | Tamaño de los datos                     |
 | payload       | ...      | Datos comprimidos usando inflate (raw)  |
 
-## Directorios 
+## Directorios
 
 - complex: Archivos complejos de Figma
-- simple: Archivos simples de Figma (formas simples + marco) 
+- simple: Archivos simples de Figma (formas simples + marco)
 - reader: CLI .fig reader
 
 Made with :heart: by [AzazelN28](https://github.com/azazeln28)
