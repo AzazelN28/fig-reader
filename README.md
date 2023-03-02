@@ -21,6 +21,12 @@ Y una vez descomprimido, si tienes `fig-reader` instalado puedes usar:
 fig-reader <Directorio>/canvas.fig
 ```
 
+O bien desde el directorio `reader`:
+
+```sh
+node cli.js <Directorio>/canvas.fig
+```
+
 ## Archivo `canvas.fig`
 
 Los archivos `canvas.fig` de Figma están basados en
@@ -41,5 +47,9 @@ similar a esta:
 - complex: Archivos complejos de Figma
 - simple: Archivos simples de Figma (formas simples + marco)
 - reader: CLI .fig reader
+
+## Esquema
+
+En el archivo `schema.kiwi` se encuentra el esquema de [Kiwi](https://github.com/evanw/kiwi) de la versión 20 (0x14), que es la actual en el momento de subir este repositorio.
 
 Made with :heart: by [AzazelN28](https://github.com/azazeln28)
