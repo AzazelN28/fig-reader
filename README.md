@@ -13,8 +13,10 @@ similar a esta:
 | payloadSize   | uint32le | Tamaño de los datos                     |
 | payload       | ...      | Datos comprimidos usando inflate (raw)  |
 
-## Folders
+## Directorios 
 
-- complex: Complex Figma files
-- simple: Simple Figma files with descriptions
+- complex: Archivos complejos de Figma
+- simple: Archivos simples de Figma (formas simples + marco) 
 - reader: CLI .fig reader
+
+Made with :heart: by [AzazelN28](https://github.com/azazeln28)
