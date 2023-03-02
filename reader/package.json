@@ -17,6 +17,7 @@
   "author": "AzazelN28 <asakon28@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "adm-zip": "^0.5.10",
     "kiwi-schema": "^0.4.7"
   }
 }

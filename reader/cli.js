@@ -3,23 +3,39 @@ import fs from 'fs'
 import zlib from 'zlib'
 // import path from 'path'
 import kiwi from 'kiwi-schema'
+import AdmZip from 'adm-zip'
 
 if (process.argv.length <= 2) {
   console.log(`Usage: ${process.argv[1]} <fig file>`)
   process.exit(1)
 }
 
-const buffer = fs.readFileSync(process.argv[2])
+// Chequeamos si el archivo es de tipo .zip, si lo es
+// descomprimimos el `canvas.fig`.
+const pkZipSignature = Buffer.from([0x50, 0x4b, 0x03, 0x04])
+let buffer = fs.readFileSync(process.argv[2])
+if (buffer.slice(0, 4).equals(pkZipSignature)) {
+  const zip = new AdmZip(process.argv[2])
+  const entries = zip.getEntries()
+  for (const entry of entries) {
+    if (entry.name === 'canvas.fig') {
+      buffer = entry.getData()
+      break
+    }
+  }
+}
+
+// Comprobamos si el archivo es `fig-kiwi`
 if (buffer.slice(0, 8).toString('utf8') !== 'fig-kiwi') {
   console.log('Not a Figma file')
   process.exit(1)
 }
 
 const version = buffer.readUInt32LE(8)
-console.log('Schema version: ', version)
+// console.log('Schema version: ', version)
 
 const size = buffer.readUInt32LE(12)
-console.log('Schema size: ', size)
+// console.log('Schema size: ', size)
 
 const kiwiCompressed = buffer.slice(16, 16 + size)
 
@@ -48,7 +64,7 @@ try {
 }
 
 // console.log(compiledSchema.decodeMessage(dataDecompressed))
-console.log(JSON.stringify(compiledSchema.decodeMessage(dataDecompressed), null, 2))
+console.log(JSON.stringify(compiledSchema.decodeMessage(dataDecompressed)))
 
 // console.log(dataDecompressed.toString('utf8'))
 // console.log(dataDecompressed.byteLength)

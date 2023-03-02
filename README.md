@@ -1,8 +1,10 @@
 # Figma .fig File Format
 
+![Figma logo](figma-logo.svg)
+
 ## Archivo `.fig` raíz
 
-Los archivos `.fig` son zips comprimidos que poseen la siguiente estructura:
+Los archivos `.fig` son zips sin compresión (STORE) que poseen la siguiente estructura:
 
 - `canvas.fig`: Documento Figma.
 - `meta.json`: JSON con los metadatos.
@@ -13,6 +15,12 @@ Puedes descomprimir cualquier archivo `.fig` con:
 
 ```sh
 unzip -d <Directorio> <Figma.fig>
+```
+
+O bien utilizar directamente `fig-reader` contra el archivo zip:
+
+```sh
+fig-reader <Archivo.fig>
 ```
 
 Y una vez descomprimido, si tienes `fig-reader` instalado puedes usar:
@@ -44,9 +52,9 @@ similar a esta:
 
 ## Directorios
 
-- complex: Archivos complejos de Figma
-- simple: Archivos simples de Figma (formas simples + marco)
-- reader: CLI .fig reader
+- `complex`: Archivos complejos de Figma
+- `simple`: Archivos simples de Figma (formas simples + marco)
+- `reader`: CLI .fig reader
 
 ## Esquema
 
