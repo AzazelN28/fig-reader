@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 import fs from 'fs'
 import zlib from 'zlib'
-// import path from 'path'
+import path from 'path'
 import kiwi from 'kiwi-schema'
 import AdmZip from 'adm-zip'
 
 if (process.argv.length <= 2) {
-  console.log(`Usage: ${process.argv[1]} <fig file>`)
-  process.exit(1)
+  console.log(`Usage: ${path.basename(process.argv[1])} <fig file>`)
+  return process.exit(1)
 }
 
 // Chequeamos si el archivo es de tipo .zip, si lo es
 // descomprimimos el `canvas.fig`.
 const pkZipSignature = Buffer.from([0x50, 0x4b, 0x03, 0x04])
+
 let buffer = fs.readFileSync(process.argv[2])
 if (buffer.slice(0, 4).equals(pkZipSignature)) {
   const zip = new AdmZip(process.argv[2])
@@ -31,12 +32,9 @@ if (buffer.slice(0, 8).toString('utf8') !== 'fig-kiwi') {
   process.exit(1)
 }
 
+// Versión del schema y tamaño.
 const version = buffer.readUInt32LE(8)
-// console.log('Schema version: ', version)
-
 const size = buffer.readUInt32LE(12)
-// console.log('Schema size: ', size)
-
 const kiwiCompressed = buffer.slice(16, 16 + size)
 
 let kiwiDecompressed
@@ -63,20 +61,5 @@ try {
   console.error('Not inflated (raw)')
 }
 
-// console.log(compiledSchema.decodeMessage(dataDecompressed))
 console.log(JSON.stringify(compiledSchema.decodeMessage(dataDecompressed)))
 
-// console.log(dataDecompressed.toString('utf8'))
-// console.log(dataDecompressed.byteLength)
-
-// fs.writeFileSync('document.figma', dataDecompressed)
-
-// console.log(compiledSchema.decodeNodeFieldMap(dataDecompressed))
-
-// console.log(16 + size, buffer.byteLength - (16 + size))
-
-// console.log(schema)
-// console.log(kiwi.prettyPrintSchema(schema))
-
-// const kiwiPath = path.join(path.dirname(process.argv[2]), 'compressed-schema.kiwi')
-// fs.writeFileSync(kiwiPath, kiwiCompressed)

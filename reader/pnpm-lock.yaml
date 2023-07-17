@@ -1,21 +1,33 @@
-lockfileVersion: 5.4
+lockfileVersion: '6.0'
 
-specifiers:
-  adm-zip: ^0.5.10
-  kiwi-schema: ^0.4.7
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 dependencies:
-  adm-zip: 0.5.10
-  kiwi-schema: 0.4.7
+  adm-zip:
+    specifier: ^0.5.10
+    version: 0.5.10
+  commander:
+    specifier: ^11.0.0
+    version: 11.0.0
+  kiwi-schema:
+    specifier: ^0.4.7
+    version: 0.4.7
 
 packages:
 
-  /adm-zip/0.5.10:
+  /adm-zip@0.5.10:
     resolution: {integrity: sha512-x0HvcHqVJNTPk/Bw8JbLWlWoo6Wwnsug0fnYYro1HBrjxZ3G7/AZk7Ahv8JwDe1uIcz8eBqvu86FuF1POiG7vQ==}
     engines: {node: '>=6.0'}
     dev: false
 
-  /kiwi-schema/0.4.7:
+  /commander@11.0.0:
+    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
+    engines: {node: '>=16'}
+    dev: false
+
+  /kiwi-schema@0.4.7:
     resolution: {integrity: sha512-IpxBAobeEea4gQDHQD0wUA6IzhMM2sVZ82oeOrXZzVfGHiqGPSayGOVvaHotai4NsYUTUbryVsHsQnKa4cfPNg==}
     hasBin: true
     dev: false
